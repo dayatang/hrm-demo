@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.dayatang.hrm</groupId>
+		<artifactId>dayatang-hrm-project</artifactId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
+	<artifactId>dayatang-hrm-organisation</artifactId>
+	<packaging>jar</packaging>
+	<name>Dayatang HRM Organisation Module</name>
+
+	<dependencies>
+		<!-- Compile -->
+		<dependency>
+			<groupId>javax.persistence</groupId>
+			<artifactId>persistence-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.dayatang.commons</groupId>
+			<artifactId>dayatang-commons-utils</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.dayatang.commons</groupId>
+			<artifactId>dayatang-commons-domain</artifactId>
+		</dependency>
+
+
+		<!-- Test -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-ehcache</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.dayatang.commons</groupId>
+			<artifactId>dayatang-commons-spring</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.dayatang.commons</groupId>
+			<artifactId>dayatang-commons-hibernate</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>${jdbc.groupId}</groupId>
+			<artifactId>${jdbc.artifactId}</artifactId>
+			<version>${jdbc.version}</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<testResources>
+			<testResource>
+				<directory>src/test/resources</directory>
+				<includes>
+					<include>applicationContext.xml</include>
+					<include>hibernate.cfg.xml</include>
+					<include>jdbc.properties</include>
+				</includes>
+				<filtering>true</filtering>
+			</testResource>
+			<testResource>
+				<directory>src/test/resources</directory>
+				<excludes>
+					<exclude>applicationContext.xml</exclude>
+					<exclude>hibernate.cfg.xml</exclude>
+					<exclude>jdbc.properties</exclude>
+				</excludes>
+				<filtering>false</filtering>
+			</testResource>
+		</testResources>
+	</build>
+</project>

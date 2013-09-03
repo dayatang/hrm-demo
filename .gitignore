@@ -1,3 +1,9 @@
+**/.DS_Store
+**/.settings
+**/.project
+**/.classpath
+**/target
+**/*.log
 *.class
 
 # Package Files #

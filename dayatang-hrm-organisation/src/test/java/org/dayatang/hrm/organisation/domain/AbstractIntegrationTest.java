@@ -1,10 +1,18 @@
 package org.dayatang.hrm.organisation.domain;
 
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
+import com.dayatang.spring.factory.SpringInstanceProvider;
+import org.junit.After;
+import org.junit.Before;
 
 import com.dayatang.domain.InstanceFactory;
-import com.dayatang.spring.factory.SpringIocUtils;
+import org.junit.runner.RunWith;
+import org.springframework.context.ApplicationContext;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.transaction.TransactionConfiguration;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.inject.Inject;
 
 /**
  * 集成测试基类。用于管理持久化和IoC基础设施
@@ -12,26 +20,25 @@ import com.dayatang.spring.factory.SpringIocUtils;
  * @author yyang
  * 
  */
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration("/applicationContext.xml")
+@TransactionConfiguration(transactionManager = "txManager")
+@Transactional
 public class AbstractIntegrationTest {
 
-	@BeforeClass
-	public static void classSetUp() throws Exception {
-		prepareIoC();
-	}
+    @Inject
+    private ApplicationContext applicationContext;
 
-	// 初始化IoC
-	private static void prepareIoC() {
-		SpringIocUtils.initInstanceProvider("/applicationContext.xml");
-	}
+    @Before
+    public void setUp() throws Exception {
+        SpringInstanceProvider provider = new SpringInstanceProvider(applicationContext);
+        InstanceFactory.setInstanceProvider(provider);
+    }
 
-	@AfterClass
-	public static void classTearDown() throws Exception {
-		resetIoC();
-	}
-
-	// 重设IoC为未初始化状态。
-	private static void resetIoC() {
-		InstanceFactory.setInstanceProvider(null);
-	}
+    @After
+    public void tearDown() throws Exception {
+        InstanceFactory.setInstanceProvider(null);
+    }
 
 }

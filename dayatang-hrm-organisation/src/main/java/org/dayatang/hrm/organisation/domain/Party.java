@@ -88,8 +88,7 @@ public abstract class Party extends AbstractEntity {
 	 */
 	@SuppressWarnings("rawtypes")
 	public void terminate(Date date) {
-		for (Accountability each : Accountability.findAccountabilitiesByParty(
-				this, date)) {
+		for (Accountability each : Accountability.findAccountabilitiesByParty(this, date)) {
 			each.terminate(date);
 		}
 		terminateDate = date;

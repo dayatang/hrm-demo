@@ -26,7 +26,7 @@ import com.dayatang.utils.DateUtils;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "CATEGORY", discriminatorType = DiscriminatorType.STRING)
 @NamedNativeQueries({@NamedNativeQuery(name = "Accountability.findAccountabilitiesByParty", 
-	query = "select o from Accountability o where o.commissioner = :party or o.responsible = :party and o.fromDate <= :date and o.toDate > :date")})
+	query = "select o from Accountability o where (o.commissioner = :party or o.responsible = :party) and o.fromDate <= :date and o.toDate > :date")})
 public abstract class Accountability<C extends Party, R extends Party> extends AbstractEntity {
 
 	private static final long serialVersionUID = 3456398163374995470L;

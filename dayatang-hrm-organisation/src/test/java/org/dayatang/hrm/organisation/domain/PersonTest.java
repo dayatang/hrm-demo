@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -20,6 +19,7 @@ public class PersonTest extends AbstractIntegrationTest {
 
 	@Before
 	public void setUp() throws Exception {
+		super.setUp();
 		person1 = new Person();
 		person1.setIdNumber("p1");
 		person1.setIm(ImType.QQ, "349591542");
@@ -31,10 +31,6 @@ public class PersonTest extends AbstractIntegrationTest {
 		person2.setIm(ImType.QQ, "666666");
 		person2.setIm(ImType.MSN, "ryyang@hotmail.com");
 		person2.save();
-	}
-
-	@After
-	public void tearDown() throws Exception {
 	}
 
 	@Test

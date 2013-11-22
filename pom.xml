@@ -30,28 +30,12 @@
 			</roles>
 		</developer>
 	</developers>
-
-	<ciManagement>
-		<system>hudson</system>
-		<url>http://www.dayatang.com:8080/hudson/job/proj-mgmt/</url>
-		<notifiers>
-			<notifier>
-				<type>mail</type>
-				<configuration>
-					<committers>true</committers>
-				</configuration>
-				<sendOnError>true</sendOnError>
-				<sendOnFailure>true</sendOnFailure>
-				<sendOnWarning>false</sendOnWarning>
-				<sendOnSuccess>false</sendOnSuccess>
-			</notifier>
-		</notifiers>
-	</ciManagement>
-
-	<scm>
-		<connection>scm:svn:http://www.dayatang.org/svn/dayatang-hrm/trunk</connection>
-		<developerConnection>scm:svn:http://www.dayatang.org/svn/dayatang-hrm/trunk</developerConnection>
-	</scm>
+    <scm>
+        <connection>scm:git:git://github.com/dayatang/hrm-demo.git</connection>
+        <developerConnection>scm:git:git@github.com:dayatang/hrm-demo.git</developerConnection>
+        <url>http://github.com/dayatang/hrm-demo/tree/master</url>
+        <tag>HEAD</tag>
+    </scm>
 
 	<issueManagement>
 		<system>Trac</system>
@@ -59,77 +43,71 @@
 	</issueManagement>
 
 
-	<distributionManagement>
-		<repository>
-			<id>dayatang.nexus.release</id>
-			<name>Dayatang release repository</name>
-			<url>dav:http://www.dayatang.com:8080/nexus/content/repositories/releases</url>
-		</repository>
-		<snapshotRepository>
-			<id>dayatang.nexus.snapshots</id>
-			<name>Dayatang snapshot repository</name>
-			<url>dav:http://www.dayatang.com:8080/nexus/content/repositories/snapshots</url>
-		</snapshotRepository>
-		<site>
-			<id>dayatang-site</id>
-			<name>Dayatang site</name>
-			<url>dav:http://www.dayatang.com/projects/proj-mgmt</url>
-		</site>
-	</distributionManagement>
+    <distributionManagement>
+        <repository>
+            <id>koala-releases</id>
+            <name>Koala release repository</name>
+            <url>dav:http://nexus.openkoala.org/nexus/content/repositories/releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>koala-snapshots</id>
+            <name>Koala snapshot repository</name>
+            <url>dav:http://nexus.openkoala.org/nexus/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <site>
+            <id>koala-site</id>
+            <name>Koala maven site</name>
+            <url>dav:http://www.dayatang.org/projects/dddlib</url>
+        </site>
+        <!-- <site> <id>github-project-site</id> <url>gitsite:git@github.com/dayatang/dddlib</url>
+            </site> -->
+    </distributionManagement>
 
-	<repositories>
-		<repository>
-			<id>dayatang-releases</id>
-			<url>http://www.dayatang.com/nexus/content/groups/public-release/</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
-		<repository>
-			<id>dayatang-snapshots</id>
-			<url>http://www.dayatang.com/nexus/content/groups/public-snapshots</url>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-		<repository>
-			<id>vaadin-addons</id>
-			<url>http://maven.vaadin.com/vaadin-addons</url>
-		</repository>
-		<repository>
-			<id>Activiti</id>
-			<url>https://maven.alfresco.com/nexus/content/groups/public</url>
-		</repository>
-	</repositories>
+    <repositories>
+        <repository>
+            <id>koala-releases</id>
+            <url>http://nexus.openkoala.org/nexus/content/groups/public-releases</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>koala-snapshots</id>
+            <url>http://nexus.openkoala.org/nexus/content/groups/public-snapshots</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
 
-	<pluginRepositories>
-		<pluginRepository>
-			<id>dayatang-releases</id>
-			<url>http://www.dayatang.com/nexus/content/groups/public-release</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</pluginRepository>
-		<pluginRepository>
-			<id>dayatang-snapshots</id>
-			<url>http://www.dayatang.com/nexus/content/groups/public-snapshots</url>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</pluginRepository>
-	</pluginRepositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>koala-releases</id>
+            <url>http://nexus.openkoala.org/nexus/content/repositories/releases</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+        <pluginRepository>
+            <id>koala-snapshots</id>
+            <url>http://nexus.openkoala.org/nexus/content/repositories/snapshots</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
 
 	<dependencyManagement>
 		<dependencies>
@@ -456,13 +434,6 @@
 				<artifactId>unitils-spring</artifactId>
 				<version>${unitils.version}</version>
 				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>com.sun</groupId>
-				<artifactId>tools</artifactId>
-				<version>1.6.0</version>
-				<scope>system</scope>
-				<systemPath>${java.tools.jar}</systemPath>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
@@ -920,7 +891,7 @@
 		<!-- Database settings -->
 		<db.type>h2</db.type>
 		<db.host>localhost</db.host>
-		<db.name>projmgmt</db.name>
+		<db.name>hrm</db.name>
 		<dbunit.operation.type>CLEAN_INSERT</dbunit.operation.type>
 		<dbunit.dataTypeFactoryName>org.dbunit.ext.h2.H2DataTypeFactory</dbunit.dataTypeFactoryName>
 		<jdbc.groupId>com.h2database</jdbc.groupId>
@@ -944,19 +915,6 @@
 		<hibernate.connection.autocommit>false</hibernate.connection.autocommit>
 		<hibernate.use.sql.comments>true</hibernate.use.sql.comments>
 		<h2.activeByDefault>false</h2.activeByDefault>
-
-		<cargo.port>6688</cargo.port>
-		<cargo.context>proj-mgmt</cargo.context>
-
-		<cas.server.protocol>http</cas.server.protocol>
-		<cas.server.host>www.dayatang.com</cas.server.host>
-		<cas.server.port>8080</cas.server.port>
-		<cas.server.context>cas</cas.server.context>
-		<cas.server.url>${cas.server.protocol}://${cas.server.host}:${cas.server.port}/${cas.server.context}</cas.server.url>
-		<cas.service.url>http://localhost:${cargo.port}/${cargo.context}</cas.service.url>
-
-		<upload.path>/tmp</upload.path>
-		<java.tools.jar>${env.JAVA_HOME}/lib/tools.jar</java.tools.jar>
 	</properties>
 	<modules>
 		<module>dayatang-hrm-organisation</module>

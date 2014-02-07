@@ -43,71 +43,71 @@
 	</issueManagement>
 
 
-    <distributionManagement>
-        <repository>
-            <id>koala-releases</id>
-            <name>Koala release repository</name>
-            <url>dav:http://nexus.openkoala.org/nexus/content/repositories/releases</url>
-        </repository>
-        <snapshotRepository>
-            <id>koala-snapshots</id>
-            <name>Koala snapshot repository</name>
-            <url>dav:http://nexus.openkoala.org/nexus/content/repositories/snapshots</url>
-        </snapshotRepository>
-        <site>
-            <id>koala-site</id>
-            <name>Koala maven site</name>
-            <url>dav:http://www.dayatang.org/projects/dddlib</url>
-        </site>
-        <!-- <site> <id>github-project-site</id> <url>gitsite:git@github.com/dayatang/dddlib</url>
-            </site> -->
-    </distributionManagement>
+	<distributionManagement>
+		<repository>
+			<id>dayatang-releases</id>
+			<name>Dayatang release repository</name>
+			<url>dav:http://nexus.dayatang.org/content/repositories/releases</url>
+		</repository>
+		<snapshotRepository>
+			<id>dayatang-snapshots</id>
+			<name>Dayatang snapshot repository</name>
+			<url>dav:http://nexus.dayatang.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+		<site>
+			<id>dayatang-site</id>
+			<name>Dayatang site</name>
+			<url>dav:http://www.dayatang.org/projects/dayatang-security</url>
+		</site>
+		<!-- <site> <id>github-project-site</id> <url>gitsite:git@github.com/dayatang/dayatang-security</url> 
+			</site> -->
+	</distributionManagement>
 
-    <repositories>
-        <repository>
-            <id>koala-releases</id>
-            <url>http://nexus.openkoala.org/nexus/content/groups/public-releases</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-        <repository>
-            <id>koala-snapshots</id>
-            <url>http://nexus.openkoala.org/nexus/content/groups/public-snapshots</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
+	<repositories>
+		<repository>
+			<id>dayatang-releases</id>
+			<url>http://nexus.dayatang.org/content/groups/public-release/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>dayatang-snapshots</id>
+			<url>http://nexus.dayatang.org/content/groups/public-snapshots</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
 
-    <pluginRepositories>
-        <pluginRepository>
-            <id>koala-releases</id>
-            <url>http://nexus.openkoala.org/nexus/content/repositories/releases</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </pluginRepository>
-        <pluginRepository>
-            <id>koala-snapshots</id>
-            <url>http://nexus.openkoala.org/nexus/content/repositories/snapshots</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </pluginRepository>
-    </pluginRepositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>dayatang-releases</id>
+			<url>http://nexus.dayatang.org/content/groups/public-release</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</pluginRepository>
+		<pluginRepository>
+			<id>dayatang-snapshots</id>
+			<url>http://nexus.dayatang.org/content/groups/public-snapshots</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
 
 	<dependencyManagement>
 		<dependencies>
@@ -248,46 +248,46 @@
 				<version>${struts2.version}</version>
 			</dependency>
 
-			<!-- dayatang-commons -->
+			<!-- dddlib -->
 			<dependency>
-				<groupId>com.dayatang.commons</groupId>
-				<artifactId>dayatang-commons-utils</artifactId>
-				<version>${dayatang.commons.version}</version>
+				<groupId>org.dayatang.dddlib</groupId>
+				<artifactId>dddlib-utils</artifactId>
+				<version>${dddlib.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>com.dayatang.commons</groupId>
-				<artifactId>dayatang-commons-configuration</artifactId>
-				<version>${dayatang.commons.version}</version>
+				<groupId>org.dayatang.dddlib</groupId>
+				<artifactId>dddlib-configuration</artifactId>
+				<version>${dddlib.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>com.dayatang.commons</groupId>
-				<artifactId>dayatang-commons-domain</artifactId>
-				<version>${dayatang.commons.version}</version>
+				<groupId>org.dayatang.dddlib</groupId>
+				<artifactId>dddlib-domain</artifactId>
+				<version>${dddlib.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>com.dayatang.commons</groupId>
-				<artifactId>dayatang-commons-spring</artifactId>
-				<version>${dayatang.commons.version}</version>
+				<groupId>org.dayatang.dddlib</groupId>
+				<artifactId>dddlib-ioc-spring</artifactId>
+				<version>${dddlib.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>com.dayatang.commons</groupId>
-				<artifactId>dayatang-commons-jpa</artifactId>
-				<version>${dayatang.commons.version}</version>
+				<groupId>org.dayatang.dddlib</groupId>
+				<artifactId>dddlib-persistence-jpa</artifactId>
+				<version>${dddlib.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>com.dayatang.commons</groupId>
-				<artifactId>dayatang-commons-hibernate</artifactId>
-				<version>${dayatang.commons.version}</version>
+				<groupId>org.dayatang.dddlib</groupId>
+				<artifactId>dddlib-persistence-hibernate</artifactId>
+				<version>${dddlib.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>com.dayatang.commons</groupId>
-				<artifactId>dayatang-commons-excel</artifactId>
-				<version>${dayatang.commons.version}</version>
+				<groupId>org.dayatang.dddlib</groupId>
+				<artifactId>dddlib-excel</artifactId>
+				<version>${dddlib.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>com.dayatang.commons</groupId>
-				<artifactId>dayatang-commons-db</artifactId>
-				<version>${dayatang.commons.version}</version>
+				<groupId>org.dayatang.dddlib</groupId>
+				<artifactId>dddlib-db</artifactId>
+				<version>${dddlib.version}</version>
 			</dependency>
 
 			<!-- other -->
@@ -406,9 +406,9 @@
 				<scope>test</scope>
 			</dependency>
 			<dependency>
-				<groupId>com.dayatang.commons</groupId>
-				<artifactId>dayatang-commons-spring-test</artifactId>
-				<version>${dayatang.commons.version}</version>
+				<groupId>org.dayatang.dddlib</groupId>
+				<artifactId>dddlib-spring-test</artifactId>
+				<version>${dddlib.version}</version>
 				<scope>test</scope>
 			</dependency>
 			<dependency>
@@ -452,8 +452,8 @@
 			<artifactId>mockito-core</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.dayatang.commons</groupId>
-			<artifactId>dayatang-commons-spring-test</artifactId>
+			<groupId>org.dayatang.dddlib</groupId>
+			<artifactId>dddlib-spring-test</artifactId>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -872,7 +872,7 @@
 
 	<properties>
 		<!-- Application settings -->
-		<dayatang.commons.version>3.7</dayatang.commons.version>
+		<dddlib.version>4.0.4-SNAPSHOT</dddlib.version>
 		<slf4j.version>1.7.2</slf4j.version>
 		<hibernate.version>4.2.7.SP1</hibernate.version>
 		<spring.version>3.1.3.RELEASE</spring.version>

@@ -1,10 +1,8 @@
 package org.dayatang.hrm.organisation.domain;
 
 import java.util.Date;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import javax.persistence.DiscriminatorValue;
@@ -20,7 +18,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 @Entity
 @DiscriminatorValue("Post")
-@NamedQueries(@NamedQuery(name = "findByOrganization", query = "select o from Post o where o.organization = :organization and o.createDate <= :date and o.terminateDate > :date"))
+@NamedQueries(@NamedQuery(name = "Party.findByOrganization", query = "select o from Post o where o.organization = :organization and o.createDate <= :date and o.terminateDate > :date"))
 public class Post extends Party {
 
 	private static final long serialVersionUID = -2205967098970951498L;
@@ -59,11 +57,8 @@ public class Post extends Party {
 
 	public static List<Post> findByOrganization(Organization organization,
 			Date date) {
-		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("organization", organization);
-		params.put("date", date);
-		return getRepository().findByNamedQuery("findByOrganization", params,
-				Post.class);
+		return getRepository().createNamedQuery("Party.findByOrganization")
+				.addParameter("organization", organization).addParameter("date", date).list();
 	}
 
 	public Set<Employee> getEmployees(Date date) {

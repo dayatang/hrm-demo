@@ -54,7 +54,7 @@
 
 	<aop:config>
 		<aop:pointcut id="repositoryOperation"
-			expression="execution(* com.dayatang.domain.EntityRepository.*(..))" />
+			expression="execution(* org.dayatang.domain.EntityRepository.*(..))" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="repositoryOperation" />
 	</aop:config>
 
@@ -64,7 +64,7 @@
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="appOperation" />
 	</aop:config>
 
-	<bean id="repository" class="com.dayatang.hibernate.EntityRepositoryHibernate"/>
+	<bean id="repository" class="org.dayatang.persistence.hibernate.EntityRepositoryHibernate"/>
 
 	<bean id="organisationApplication"
 		class="org.dayatang.hrm.organisation.application.impl.OrganisationApplicationImpl">

@@ -2,15 +2,13 @@ package org.dayatang.hrm.organisation.domain;
 
 import static org.junit.Assert.*;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import com.dayatang.domain.EntityRepository;
-import com.dayatang.domain.InstanceFactory;
+import org.dayatang.domain.EntityRepository;
+import org.dayatang.domain.InstanceFactory;
 
 public class PersonTest extends AbstractIntegrationTest {
 	
@@ -36,10 +34,9 @@ public class PersonTest extends AbstractIntegrationTest {
 	@Test
 	public void testGetIms() {
 		String jpql = "select o from Person o join o.ims i where KEY(i) = :imType and i = :im";
-		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("imType", ImType.QQ);
-		params.put("im", "666666");
-		List<Person> persons = InstanceFactory.getInstance(EntityRepository.class).find(jpql, params, Person.class);
+		EntityRepository repository = InstanceFactory.getInstance(EntityRepository.class);
+		List<Person> persons = repository.createJpqlQuery(jpql)
+				.addParameter("imType", ImType.QQ).addParameter("im", "666666").list();
 		assertFalse(persons.contains(person1));
 		assertTrue(persons.contains(person2));
 	}

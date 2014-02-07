@@ -8,7 +8,7 @@ import java.util.List;
 import org.dayatang.hrm.organisation.utils.OrganisationUtils;
 import org.junit.Test;
 
-import com.dayatang.utils.DateUtils;
+import org.dayatang.utils.DateUtils;
 
 public class AccountabilityTest extends AbstractIntegrationTest {
 

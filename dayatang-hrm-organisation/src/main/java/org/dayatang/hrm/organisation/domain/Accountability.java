@@ -1,9 +1,7 @@
 package org.dayatang.hrm.organisation.domain;
 
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorColumn;
@@ -18,9 +16,8 @@ import javax.persistence.NamedNativeQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.dayatang.domain.AbstractEntity;
-import com.dayatang.domain.QuerySettings;
-import com.dayatang.utils.DateUtils;
+import org.dayatang.domain.AbstractEntity;
+import org.dayatang.utils.DateUtils;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -86,15 +83,13 @@ public abstract class Accountability<C extends Party, R extends Party> extends A
 
 	@SuppressWarnings("rawtypes")
 	public static <T extends Accountability> List<T> findAccountabilities(Class<T> accountabilityClass, Date date) {
-		return getRepository().find(QuerySettings.create(accountabilityClass).le("fromDate", date).gt("toDate", date));
+		return getRepository().createCriteriaQuery(accountabilityClass).le("fromDate", date).gt("toDate", date).list();
 	}
 
 	@SuppressWarnings("rawtypes")
 	public static List<Accountability> findAccountabilitiesByParty(Party party, Date date) {
-		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("party", party);
-		params.put("date", date);
-		return getRepository().findByNamedQuery("Accountability.findAccountabilitiesByParty", params, Accountability.class);
+		return getRepository().createNamedQuery("Accountability.findAccountabilitiesByParty")
+				.addParameter("party", party).addParameter("date", date).list();
 	}
 
 }

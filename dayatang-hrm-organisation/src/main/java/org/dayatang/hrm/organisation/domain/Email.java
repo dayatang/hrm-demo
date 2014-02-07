@@ -6,7 +6,7 @@ import javax.persistence.Embeddable;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
-import com.dayatang.domain.ValueObject;
+import org.dayatang.domain.ValueObject;
 
 @Embeddable
 public class Email implements ValueObject {

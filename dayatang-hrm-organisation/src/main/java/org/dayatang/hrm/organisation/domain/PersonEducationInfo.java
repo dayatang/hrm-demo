@@ -7,7 +7,7 @@ import javax.persistence.Embeddable;
 
 import org.apache.commons.lang3.builder.CompareToBuilder;
 
-import com.dayatang.domain.ValueObject;
+import org.dayatang.domain.ValueObject;
 
 @Embeddable
 public class PersonEducationInfo implements ValueObject,

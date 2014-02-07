@@ -8,8 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
-import com.dayatang.domain.AbstractEntity;
-import com.dayatang.utils.DateUtils;
+import org.dayatang.domain.AbstractEntity;
+import org.dayatang.utils.DateUtils;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)

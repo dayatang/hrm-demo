@@ -1,9 +1,7 @@
 package org.dayatang.hrm.organisation.domain;
 
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -17,8 +15,8 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 @Entity
 @DiscriminatorValue("Employment")
 @NamedQueries({
-		@NamedQuery(name = "getEmployer", query = "select o.commissioner from Employment o where o.responsible = :employee and o.fromDate <= :date and o.toDate > :date"),
-		@NamedQuery(name = "getEmployees", query = "select o.responsible from Employment o where o.commissioner = :employer and o.fromDate <= :date and o.toDate > :date") })
+		@NamedQuery(name = "Employment.getEmployer", query = "select o.commissioner from Employment o where o.responsible = :employee and o.fromDate <= :date and o.toDate > :date"),
+		@NamedQuery(name = "Employment.getEmployees", query = "select o.responsible from Employment o where o.commissioner = :employer and o.fromDate <= :date and o.toDate > :date") })
 public class Employment extends Accountability<Company, Employee> {
 
 	private static final long serialVersionUID = 7390804525640459582L;
@@ -31,20 +29,13 @@ public class Employment extends Accountability<Company, Employee> {
 	}
 
 	public static Company getEmployer(Employee employee, Date date) {
-		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("employee", employee);
-		params.put("date", date);
-		List<Company> companies = getRepository().findByNamedQuery(
-				"getEmployer", params, Company.class);
-		return companies.isEmpty() ? null : companies.get(0);
+		return getRepository().createNamedQuery("Employment.getEmployer")
+				.addParameter("employee", employee).addParameter("date", date).singleResult();
 	}
 
 	public static List<Employee> getEmployees(Company employer, Date date) {
-		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("employer", employer);
-		params.put("date", date);
-		return getRepository().findByNamedQuery("getEmployees", params,
-				Employee.class);
+		return getRepository().createNamedQuery("Employment.getEmployees")
+				.addParameter("employer", employer).addParameter("date", date).list();
 	}
 
 	@Override

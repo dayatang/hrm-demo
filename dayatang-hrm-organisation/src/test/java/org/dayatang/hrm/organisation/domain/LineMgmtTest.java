@@ -7,7 +7,7 @@ import java.util.Date;
 import org.dayatang.hrm.organisation.utils.OrganisationUtils;
 import org.junit.Test;
 
-import com.dayatang.utils.DateUtils;
+import org.dayatang.utils.DateUtils;
 
 public class LineMgmtTest extends AbstractIntegrationTest {
 

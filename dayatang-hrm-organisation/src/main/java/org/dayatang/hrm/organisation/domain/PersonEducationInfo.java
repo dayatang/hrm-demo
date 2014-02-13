@@ -15,13 +15,13 @@ public class PersonEducationInfo implements ValueObject,
 
 	private static final long serialVersionUID = 4425849994689476079L;
 
-	@Column(name = "from_date")
 	private Date fromDate;
 
 	private Date toDate;
 
 	private String university;
 
+    @Column(name = "from_date")
 	public Date getFromDate() {
 		return fromDate;
 	}

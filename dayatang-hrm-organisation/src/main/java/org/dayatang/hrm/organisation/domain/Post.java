@@ -23,12 +23,8 @@ public class Post extends Party {
 
 	private static final long serialVersionUID = -2205967098970951498L;
 
-	@ManyToOne
-	@JoinColumn(name = "org_id")
 	private Organization organization;
 
-	@ManyToOne
-	@JoinColumn(name = "job_id")
 	private Job job;
 
 	public Post() {
@@ -39,6 +35,8 @@ public class Post extends Party {
 		super(name);
 	}
 
+    @ManyToOne
+    @JoinColumn(name = "org_id")
 	public Organization getOrganization() {
 		return organization;
 	}
@@ -47,6 +45,8 @@ public class Post extends Party {
 		this.organization = organization;
 	}
 
+    @ManyToOne
+    @JoinColumn(name = "job_id")
 	public Job getJob() {
 		return job;
 	}

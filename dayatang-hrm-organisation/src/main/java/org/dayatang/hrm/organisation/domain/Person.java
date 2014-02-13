@@ -28,22 +28,15 @@ public class Person extends AbstractEntity {
 
 	private static final long serialVersionUID = 4180083929142881138L;
 
-	@Embedded
 	private PersonName name;
 
 	private String idNumber;
 	
-	@ElementCollection
-	@CollectionTable(name = "person_emails", joinColumns = @JoinColumn(name = "person_id"))
 	private Set<Email> emails = new HashSet<Email>();
 	
-	@ElementCollection
-	@CollectionTable(name = "person_ims", joinColumns = @JoinColumn(name = "person_id"))
-	@MapKeyColumn(name = "im_type")
-	@MapKeyEnumerated(EnumType.STRING)
-	@Column(name = "im_address")
 	private Map<ImType, String> ims = new HashMap<ImType, String>();
 
+    @Embedded
 	public PersonName getName() {
 		return name;
 	}
@@ -60,6 +53,8 @@ public class Person extends AbstractEntity {
 		this.idNumber = idNumber;
 	}
 
+    @ElementCollection
+    @CollectionTable(name = "person_emails", joinColumns = @JoinColumn(name = "person_id"))
 	public Set<Email> getEmails() {
 		return Collections.unmodifiableSet(emails);
 	}
@@ -78,7 +73,12 @@ public class Person extends AbstractEntity {
 	public void removeEmail(Email email) {
 		emails.remove(email);
 	}
-	
+
+    @ElementCollection
+    @CollectionTable(name = "person_ims", joinColumns = @JoinColumn(name = "person_id"))
+    @MapKeyColumn(name = "im_type")
+    @MapKeyEnumerated(EnumType.STRING)
+    @Column(name = "im_address")
 	public Map<ImType, String> getIms() {
 		return Collections.unmodifiableMap(ims);
 	}

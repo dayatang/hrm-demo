@@ -13,7 +13,6 @@ public class Email implements ValueObject {
 	
 	private static final long serialVersionUID = -734927401730610904L;
 	
-	@Column(name = "email")
 	private String address;
 
 	Email() {
@@ -23,6 +22,7 @@ public class Email implements ValueObject {
 		this.address = address;
 	}
 
+    @Column(name = "email")
 	public String getAddress() {
 		return address;
 	}

@@ -98,23 +98,10 @@ public class Person extends AbstractEntity {
 		ims.remove(imType);
 	}
 
-	@Override
-	public int hashCode() {
-		return new HashCodeBuilder().append(idNumber).toHashCode();
-	}
-
-	@Override
-	public boolean equals(Object other) {
-		if (this == other) {
-			return true;
-		}
-		if (!(other instanceof Person)) {
-			return false;
-		}
-		Person that = (Person) other;
-		return new EqualsBuilder().append(this.idNumber, that.idNumber)
-				.isEquals();
-	}
+    @Override
+    public String[] businessKeys() {
+        return new String[] {"name", "idNumber"};
+    }
 
 	@Override
 	public String toString() {

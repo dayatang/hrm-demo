@@ -95,4 +95,8 @@ public abstract class Party extends AbstractEntity {
 		save();
 	}
 
+    @Override
+    public String[] businessKeys() {
+        return new String[] {"name"};
+    }
 }

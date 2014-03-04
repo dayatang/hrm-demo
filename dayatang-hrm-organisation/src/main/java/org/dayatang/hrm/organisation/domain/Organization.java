@@ -65,21 +65,6 @@ public abstract class Organization extends Party {
 	}
 
 	@Override
-	public boolean equals(Object other) {
-		if (!(other instanceof Organization)) {
-			return false;
-		}
-		Organization that = (Organization) other;
-		return new EqualsBuilder().append(this.getName(), that.getName())
-				.isEquals();
-	}
-
-	@Override
-	public int hashCode() {
-		return new HashCodeBuilder().append(getName()).toHashCode();
-	}
-
-	@Override
 	public String toString() {
 		return new ToStringBuilder(this).append(getName()).build();
 	}

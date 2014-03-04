@@ -42,20 +42,10 @@ public class Employee extends Party {
 		return new HashSet<Post>(PostHolding.findPostsOfEmployee(this, date));
 	}
 
-	@Override
-	public boolean equals(Object other) {
-		if (!(other instanceof Employee)) {
-			return false;
-		}
-		Employee that = (Employee) other;
-		return new EqualsBuilder().append(this.getSn(), that.getSn())
-				.isEquals();
-	}
-
-	@Override
-	public int hashCode() {
-		return new HashCodeBuilder().append(getSn()).toHashCode();
-	}
+    @Override
+    public String[] businessKeys() {
+        return new String[] {"sn"};
+    }
 
 	@Override
 	public String toString() {

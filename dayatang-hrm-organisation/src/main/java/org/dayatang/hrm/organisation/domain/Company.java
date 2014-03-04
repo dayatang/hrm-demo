@@ -16,24 +16,14 @@ public class Company extends Organization {
 	public Company() {
 	}
 
-	public Company(String name) {
+    public Company(String name) {
 		super(name);
 	}
 
-	@Override
-	public boolean equals(Object other) {
-		if (!(other instanceof Company)) {
-			return false;
-		}
-		Company that = (Company) other;
-		return new EqualsBuilder().append(this.getName(), that.getName())
-				.isEquals();
-	}
-
-	@Override
-	public int hashCode() {
-		return new HashCodeBuilder().append(getName()).toHashCode();
-	}
+    @Override
+    public String[] businessKeys() {
+        return new String[] {"name"};
+    }
 
 	@Override
 	public String toString() {

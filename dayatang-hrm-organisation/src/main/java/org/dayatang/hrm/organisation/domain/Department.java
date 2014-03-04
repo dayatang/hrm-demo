@@ -20,20 +20,10 @@ public class Department extends Organization {
 		super(name);
 	}
 
-	@Override
-	public boolean equals(Object other) {
-		if (!(other instanceof Department)) {
-			return false;
-		}
-		Department that = (Department) other;
-		return new EqualsBuilder().append(this.getName(), that.getName())
-				.isEquals();
-	}
-
-	@Override
-	public int hashCode() {
-		return new HashCodeBuilder().append(getName()).toHashCode();
-	}
+    @Override
+    public String[] businessKeys() {
+        return new String[] {"name"};
+    }
 
 	@Override
 	public String toString() {

@@ -24,7 +24,7 @@ public class Employment extends Accountability<Company, Employee> {
 	Employment() {
 	}
 
-	public Employment(Company company, Employee employee, Date date) {
+    public Employment(Company company, Employee employee, Date date) {
 		super(company, employee, date);
 	}
 
@@ -36,24 +36,6 @@ public class Employment extends Accountability<Company, Employee> {
 	public static List<Employee> getEmployees(Company employer, Date date) {
 		return getRepository().createNamedQuery("Employment.getEmployees")
 				.addParameter("employer", employer).addParameter("date", date).list();
-	}
-
-	@Override
-	public boolean equals(Object other) {
-		if (!(other instanceof Employment)) {
-			return false;
-		}
-		Employment that = (Employment) other;
-		return new EqualsBuilder()
-				.append(this.getCommissioner(), that.getCommissioner())
-				.append(this.getResponsible(), that.getResponsible())
-				.append(this.getFromDate(), that.getFromDate()).isEquals();
-	}
-
-	@Override
-	public int hashCode() {
-		return new HashCodeBuilder().append(getCommissioner())
-				.append(getResponsible()).append(getFromDate()).toHashCode();
 	}
 
 	@Override

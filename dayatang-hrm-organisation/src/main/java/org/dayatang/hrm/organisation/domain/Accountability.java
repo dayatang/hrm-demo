@@ -3,23 +3,13 @@ package org.dayatang.hrm.organisation.domain;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorType;
-import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedNativeQueries;
-import javax.persistence.NamedNativeQuery;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 import org.dayatang.domain.AbstractEntity;
 import org.dayatang.utils.DateUtils;
 
 @Entity
+@Table(name = "accountabilities")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "CATEGORY", discriminatorType = DiscriminatorType.STRING)
 @NamedNativeQueries({@NamedNativeQuery(name = "Accountability.findAccountabilitiesByParty", 
@@ -37,6 +27,7 @@ public abstract class Accountability<C extends Party, R extends Party> extends A
 	private R responsible;
 
 	@Temporal(TemporalType.DATE)
+    @Column(name = "from_date")
 	private Date fromDate;
 
 	@Temporal(TemporalType.DATE)
@@ -75,6 +66,11 @@ public abstract class Accountability<C extends Party, R extends Party> extends A
 	public Date getToDate() {
 		return toDate;
 	}
+
+    @Override
+    public String[] businessKeys() {
+        return new String[] {"commissioner", "responsible", "fromDate", "toDate"};
+    }
 
 	public void terminate(Date date) {
 		this.toDate = date;

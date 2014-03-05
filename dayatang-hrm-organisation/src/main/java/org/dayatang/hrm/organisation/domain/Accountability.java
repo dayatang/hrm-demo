@@ -39,7 +39,7 @@ public abstract class Accountability<C extends Party, R extends Party> extends A
 	public Accountability(C commissioner, R responsible, Date fromDate) {
 		this.commissioner = commissioner;
 		this.responsible = responsible;
-		this.fromDate = fromDate;
+		this.fromDate = new Date(fromDate.getTime());
 		this.toDate = DateUtils.MAX_DATE;
 	}
 
@@ -60,7 +60,7 @@ public abstract class Accountability<C extends Party, R extends Party> extends A
 	}
 
 	public Date getFromDate() {
-		return fromDate;
+		return new Date(fromDate.getTime());
 	}
 
 	public Date getToDate() {

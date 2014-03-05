@@ -6,16 +6,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import javax.persistence.CollectionTable;
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.JoinColumn;
-import javax.persistence.MapKeyColumn;
-import javax.persistence.MapKeyEnumerated;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.EqualsBuilder;
@@ -43,6 +34,22 @@ public class Person extends AbstractEntity {
 	@MapKeyEnumerated(EnumType.STRING)
 	@Column(name = "im_address")
 	private Map<ImType, String> ims = new HashMap<ImType, String>();
+
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "province", column = @Column(name = "home_province")),
+            @AttributeOverride(name = "city", column = @Column(name = "home_city")),
+            @AttributeOverride(name = "detail", column = @Column(name = "home_detail"))
+    })
+    private Address homeAddress;
+
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "province", column = @Column(name = "mail_province")),
+            @AttributeOverride(name = "city", column = @Column(name = "mail_city")),
+            @AttributeOverride(name = "detail", column = @Column(name = "mail_detail"))
+    })
+    private Address mailAddress;
 
 	public PersonName getName() {
 		return name;

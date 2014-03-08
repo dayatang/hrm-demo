@@ -9,8 +9,6 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 @Entity
@@ -23,7 +21,7 @@ public class Employee extends Party {
 	@JoinColumn(name = "person_id")
 	private Person person;
 
-	Employee() {
+	protected Employee() {
 	}
 
 	public Employee(String name) {
@@ -41,11 +39,6 @@ public class Employee extends Party {
 	public Set<Post> getPosts(Date date) {
 		return new HashSet<Post>(PostHolding.findPostsOfEmployee(this, date));
 	}
-
-    @Override
-    public String[] businessKeys() {
-        return new String[] {"sn"};
-    }
 
 	@Override
 	public String toString() {

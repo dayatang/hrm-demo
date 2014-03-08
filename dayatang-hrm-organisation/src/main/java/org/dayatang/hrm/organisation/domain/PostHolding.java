@@ -8,8 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 @Entity
@@ -21,7 +19,7 @@ public class PostHolding extends Accountability<Post, Employee> {
 
 	private static final long serialVersionUID = 7390804525640459582L;
 
-	PostHolding() {
+	protected PostHolding() {
 	}
 
 	public PostHolding(Post post, Employee employee, Date date) {
@@ -38,25 +36,7 @@ public class PostHolding extends Accountability<Post, Employee> {
 				.addParameter("post", post).addParameter("date", date).list();
 	}
 
-	@Override
-	public boolean equals(Object other) {
-		if (!(other instanceof PostHolding)) {
-			return false;
-		}
-		PostHolding that = (PostHolding) other;
-		return new EqualsBuilder()
-				.append(this.getCommissioner(), that.getCommissioner())
-				.append(this.getResponsible(), that.getResponsible())
-				.append(this.getFromDate(), that.getFromDate()).isEquals();
-	}
-
-	@Override
-	public int hashCode() {
-		return new HashCodeBuilder().append(getCommissioner())
-				.append(getResponsible()).append(getFromDate()).toHashCode();
-	}
-
-	@Override
+        @Override
 	public String toString() {
 		return new ToStringBuilder(this).append(getCommissioner())
 				.append(getResponsible()).build();

@@ -17,8 +17,6 @@ public class Employee extends Party {
 
 	private static final long serialVersionUID = -7339118476080239701L;
 
-	@ManyToOne
-	@JoinColumn(name = "person_id")
 	private Person person;
 
 	protected Employee() {
@@ -28,6 +26,8 @@ public class Employee extends Party {
 		super(name);
 	}
 
+    @ManyToOne
+    @JoinColumn(name = "person_id")
 	public Person getPerson() {
 		return person;
 	}

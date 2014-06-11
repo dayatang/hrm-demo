@@ -23,21 +23,21 @@ public class PersonEducationInfo implements ValueObject,
     private String university;
 
     @Temporal(TemporalType.DATE)
-    public Date getFromDate() {
-        return fromDate;
-    }
+	public Date getFromDate() {
+		return new Date(fromDate.getTime());
+	}
 
     public void setFromDate(Date fromDate) {
-        this.fromDate = fromDate;
+        this.fromDate = new Date(fromDate.getTime());
     }
 
     @Temporal(TemporalType.DATE)
     public Date getToDate() {
-        return toDate;
+        return new Date(toDate.getTime());
     }
 
     public void setToDate(Date toDate) {
-        this.toDate = toDate;
+        this.toDate = new Date(toDate.getTime());
     }
 
     public String getUniversity() {

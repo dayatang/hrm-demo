@@ -14,7 +14,6 @@ import org.dayatang.domain.AbstractEntity;
 @Entity
 @Table(name = "persons")
 public class Person extends AbstractEntity {
-
     private static final long serialVersionUID = 4180083929142881138L;
 
     private PersonName name;

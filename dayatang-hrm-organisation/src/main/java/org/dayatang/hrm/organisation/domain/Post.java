@@ -19,7 +19,6 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 @NamedQueries(
         @NamedQuery(name = "Party.findByOrganization", query = "select o from Post o where o.organization = :organization and o.createDate <= :date and o.terminateDate > :date"))
 public class Post extends Party {
-
     private static final long serialVersionUID = -2205967098970951498L;
 
     private Organization organization;

@@ -64,7 +64,9 @@
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="appOperation" />
 	</aop:config>
 
-	<bean id="repository" class="org.dayatang.persistence.hibernate.EntityRepositoryHibernate"/>
+	<bean id="repository" class="org.dayatang.persistence.hibernate.EntityRepositoryHibernate">
+        <constructor-arg ref="sessionFactory"/>
+    </bean>
 
 	<bean id="organisationApplication"
 		class="org.dayatang.hrm.organisation.application.impl.OrganisationApplicationImpl">

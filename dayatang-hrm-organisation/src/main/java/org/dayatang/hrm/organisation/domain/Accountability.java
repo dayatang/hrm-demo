@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.*;
 
 import org.dayatang.domain.AbstractEntity;
+import org.dayatang.utils.Assert;
 import org.dayatang.utils.DateUtils;
 
 @Entity
@@ -43,7 +44,7 @@ public abstract class Accountability<C extends Party, R extends Party> extends A
         return commissioner;
     }
 
-    public void setCommissioner(C commissioner) {
+    void setCommissioner(C commissioner) {
         this.commissioner = commissioner;
     }
 
@@ -53,12 +54,11 @@ public abstract class Accountability<C extends Party, R extends Party> extends A
         return responsible;
     }
 
-    public void setResponsible(R responsible) {
+    void setResponsible(R responsible) {
         this.responsible = responsible;
     }
 
     @Temporal(TemporalType.DATE)
-    @Column(name = "from_date")
     public Date getFromDate() {
         return new Date(fromDate.getTime());
     }
@@ -70,11 +70,11 @@ public abstract class Accountability<C extends Party, R extends Party> extends A
     @Temporal(TemporalType.DATE)
     @Column(name = "to_date")
     public Date getToDate() {
-        return toDate;
+        return new Date(toDate.getTime());
     }
 
     void setToDate(Date toDate) {
-        this.toDate = toDate;
+        this.toDate = new Date(toDate.getTime());
     }
 
     @Override
@@ -83,7 +83,8 @@ public abstract class Accountability<C extends Party, R extends Party> extends A
     }
 
     public void terminate(Date date) {
-        this.toDate = date;
+        Assert.notNull(date, "Terminate Date is null!");
+        this.toDate = new Date(date.getTime());
         save();
     }
 

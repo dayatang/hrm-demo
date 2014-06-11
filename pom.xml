@@ -872,10 +872,10 @@
 
 	<properties>
 		<!-- Application settings -->
-		<dddlib.version>4.0.4-SNAPSHOT</dddlib.version>
+		<dddlib.version>4.1.2</dddlib.version>
 		<slf4j.version>1.7.2</slf4j.version>
 		<hibernate.version>4.2.7.SP1</hibernate.version>
-		<spring.version>3.1.3.RELEASE</spring.version>
+		<spring.version>4.0.2.RELEASE</spring.version>
 		<struts2.version>2.3.4.1</struts2.version>
 		<activiti.version>5.10</activiti.version>
 		<unitils.version>3.3</unitils.version>

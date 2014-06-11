@@ -22,7 +22,7 @@ public class OrgLineMgmt extends Accountability<Organization, Organization> {
 
 	private static final long serialVersionUID = 7390804525640459582L;
 
-	OrgLineMgmt() {
+	protected OrgLineMgmt() {
 	}
 
 	public OrgLineMgmt(Organization parent, Organization child, Date date) {
@@ -49,29 +49,4 @@ public class OrgLineMgmt extends Accountability<Organization, Organization> {
 		return getRepository().createNamedQuery("OrgLineMgmt.findByResponsible")
 				.addParameter("organization", responsible).addParameter("date", date).singleResult();
 	}
-
-	@Override
-	public boolean equals(Object other) {
-		if (!(other instanceof OrgLineMgmt)) {
-			return false;
-		}
-		OrgLineMgmt that = (OrgLineMgmt) other;
-		return new EqualsBuilder()
-				.append(this.getCommissioner(), that.getCommissioner())
-				.append(this.getResponsible(), that.getResponsible())
-				.isEquals();
-	}
-
-	@Override
-	public int hashCode() {
-		return new HashCodeBuilder().append(getCommissioner())
-				.append(getResponsible()).toHashCode();
-	}
-
-	@Override
-	public String toString() {
-		return new ToStringBuilder(this).append(getCommissioner())
-				.append(getResponsible()).build();
-	}
-
 }

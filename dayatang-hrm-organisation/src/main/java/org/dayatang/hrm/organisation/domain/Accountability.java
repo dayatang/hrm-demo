@@ -3,23 +3,13 @@ package org.dayatang.hrm.organisation.domain;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorType;
-import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedNativeQueries;
-import javax.persistence.NamedNativeQuery;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 import org.dayatang.domain.AbstractEntity;
 import org.dayatang.utils.DateUtils;
 
 @Entity
+@Table(name = "accountabilities")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "CATEGORY", discriminatorType = DiscriminatorType.STRING)
 @NamedNativeQueries({
@@ -37,13 +27,21 @@ public abstract class Accountability<C extends Party, R extends Party> extends A
 
     private Date toDate;
 
+<<<<<<< HEAD
     Accountability() {
+=======
+    protected Accountability() {
+>>>>>>> adc9a6bebdbf81e9811bffacadefdd9097ef811f
     }
 
     public Accountability(C commissioner, R responsible, Date fromDate) {
         this.commissioner = commissioner;
         this.responsible = responsible;
+<<<<<<< HEAD
         this.fromDate = fromDate;
+=======
+        this.fromDate = new Date(fromDate.getTime());
+>>>>>>> adc9a6bebdbf81e9811bffacadefdd9097ef811f
         this.toDate = DateUtils.MAX_DATE;
     }
 
@@ -53,7 +51,11 @@ public abstract class Accountability<C extends Party, R extends Party> extends A
         return commissioner;
     }
 
+<<<<<<< HEAD
     void setCommissioner(C commissioner) {
+=======
+    public void setCommissioner(C commissioner) {
+>>>>>>> adc9a6bebdbf81e9811bffacadefdd9097ef811f
         this.commissioner = commissioner;
     }
 
@@ -63,13 +65,23 @@ public abstract class Accountability<C extends Party, R extends Party> extends A
         return responsible;
     }
 
+<<<<<<< HEAD
     void setResponsible(R responsible) {
+=======
+    public void setResponsible(R responsible) {
+>>>>>>> adc9a6bebdbf81e9811bffacadefdd9097ef811f
         this.responsible = responsible;
     }
 
     @Temporal(TemporalType.DATE)
+<<<<<<< HEAD
     public Date getFromDate() {
         return fromDate;
+=======
+    @Column(name = "from_date")
+    public Date getFromDate() {
+        return new Date(fromDate.getTime());
+>>>>>>> adc9a6bebdbf81e9811bffacadefdd9097ef811f
     }
 
     void setFromDate(Date fromDate) {
@@ -77,6 +89,10 @@ public abstract class Accountability<C extends Party, R extends Party> extends A
     }
 
     @Temporal(TemporalType.DATE)
+<<<<<<< HEAD
+=======
+    @Column(name = "to_date")
+>>>>>>> adc9a6bebdbf81e9811bffacadefdd9097ef811f
     public Date getToDate() {
         return toDate;
     }
@@ -85,6 +101,14 @@ public abstract class Accountability<C extends Party, R extends Party> extends A
         this.toDate = toDate;
     }
 
+<<<<<<< HEAD
+=======
+    @Override
+    public String[] businessKeys() {
+        return new String[]{"commissioner", "responsible", "fromDate", "toDate"};
+    }
+
+>>>>>>> adc9a6bebdbf81e9811bffacadefdd9097ef811f
     public void terminate(Date date) {
         this.toDate = date;
         save();

@@ -15,14 +15,18 @@ public class Email implements ValueObject {
 	
 	private String address;
 
-	Email() {
+	protected Email() {
 	}
 
 	public Email(String address) {
 		this.address = address;
 	}
 
+<<<<<<< HEAD
     @Column(name = "email")
+=======
+	@Column(name = "email")
+>>>>>>> adc9a6bebdbf81e9811bffacadefdd9097ef811f
 	public String getAddress() {
 		return address;
 	}

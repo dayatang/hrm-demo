@@ -3,8 +3,6 @@ package org.dayatang.hrm.organisation.domain;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 @Entity
@@ -18,21 +16,6 @@ public class Department extends Organization {
 
 	public Department(String name) {
 		super(name);
-	}
-
-	@Override
-	public boolean equals(Object other) {
-		if (!(other instanceof Department)) {
-			return false;
-		}
-		Department that = (Department) other;
-		return new EqualsBuilder().append(this.getName(), that.getName())
-				.isEquals();
-	}
-
-	@Override
-	public int hashCode() {
-		return new HashCodeBuilder().append(getName()).toHashCode();
 	}
 
 	@Override

@@ -7,8 +7,6 @@ import java.util.Set;
 
 import javax.persistence.Entity;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.dayatang.hrm.organisation.TerminateNotEmptyOrganizationException;
 
@@ -62,21 +60,6 @@ public abstract class Organization extends Party {
 			}
 		}
 		return false;
-	}
-
-	@Override
-	public boolean equals(Object other) {
-		if (!(other instanceof Organization)) {
-			return false;
-		}
-		Organization that = (Organization) other;
-		return new EqualsBuilder().append(this.getName(), that.getName())
-				.isEquals();
-	}
-
-	@Override
-	public int hashCode() {
-		return new HashCodeBuilder().append(getName()).toHashCode();
 	}
 
 	@Override

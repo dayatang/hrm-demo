@@ -872,7 +872,7 @@
 
 	<properties>
 		<!-- Application settings -->
-		<dddlib.version>4.2.0</dddlib.version>
+		<dddlib.version>4.2.1-SNAPSHOT</dddlib.version>
 		<slf4j.version>1.7.2</slf4j.version>
         <hibernate.version>4.3.4.Final</hibernate.version>
         <spring.version>4.0.3.RELEASE</spring.version>

@@ -18,7 +18,6 @@ import org.dayatang.domain.AbstractEntity;
 @Entity
 public class EmployeeArchieve extends AbstractEntity {
     
-    
     private Employee employee;
 
     @OneToOne

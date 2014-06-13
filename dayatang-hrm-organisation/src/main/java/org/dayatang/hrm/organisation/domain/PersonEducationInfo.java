@@ -16,13 +16,14 @@ public class PersonEducationInfo implements ValueObject,
 
     private static final long serialVersionUID = 4425849994689476079L;
 
+    @Temporal(TemporalType.DATE)
     private Date fromDate;
 
+    @Temporal(TemporalType.DATE)
     private Date toDate;
 
     private String university;
 
-    @Temporal(TemporalType.DATE)
 	public Date getFromDate() {
 		return new Date(fromDate.getTime());
 	}
@@ -31,7 +32,6 @@ public class PersonEducationInfo implements ValueObject,
         this.fromDate = new Date(fromDate.getTime());
     }
 
-    @Temporal(TemporalType.DATE)
     public Date getToDate() {
         return new Date(toDate.getTime());
     }

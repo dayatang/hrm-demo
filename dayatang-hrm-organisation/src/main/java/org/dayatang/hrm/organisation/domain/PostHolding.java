@@ -36,7 +36,7 @@ public class PostHolding extends Accountability<Post, Employee> {
 				.addParameter("post", post).addParameter("date", date).list();
 	}
 
-        @Override
+    @Override
 	public String toString() {
 		return new ToStringBuilder(this).append(getCommissioner())
 				.append(getResponsible()).build();

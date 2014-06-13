@@ -13,6 +13,11 @@ public class Address implements ValueObject {
     private String city;
     private String detail;
 
+    public Address(String province, String city, String detail) {
+        this.province = province;
+        this.city = city;
+        this.detail = detail;
+    }
 
     public String getProvince() {
         return province;

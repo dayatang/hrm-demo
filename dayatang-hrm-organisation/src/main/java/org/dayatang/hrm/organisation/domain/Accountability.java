@@ -20,12 +20,20 @@ public abstract class Accountability<C extends Party, R extends Party> extends A
 
     private static final long serialVersionUID = 3456398163374995470L;
 
+    @ManyToOne(targetEntity = Party.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "commissioner_id")
     private C commissioner;
 
+    @ManyToOne(targetEntity = Party.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "responsible_id")
     private R responsible;
 
+    @Temporal(TemporalType.DATE)
+    @Column(name = "from_date")
     private Date fromDate;
 
+    @Temporal(TemporalType.DATE)
+    @Column(name = "to_date")
     private Date toDate;
 
     protected Accountability() {
@@ -38,8 +46,6 @@ public abstract class Accountability<C extends Party, R extends Party> extends A
         this.toDate = DateUtils.MAX_DATE;
     }
 
-    @ManyToOne(targetEntity = Party.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "commissioner_id")
     public C getCommissioner() {
         return commissioner;
     }
@@ -48,8 +54,6 @@ public abstract class Accountability<C extends Party, R extends Party> extends A
         this.commissioner = commissioner;
     }
 
-    @ManyToOne(targetEntity = Party.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "responsible_id")
     public R getResponsible() {
         return responsible;
     }
@@ -58,7 +62,6 @@ public abstract class Accountability<C extends Party, R extends Party> extends A
         this.responsible = responsible;
     }
 
-    @Temporal(TemporalType.DATE)
     public Date getFromDate() {
         return new Date(fromDate.getTime());
     }
@@ -67,8 +70,6 @@ public abstract class Accountability<C extends Party, R extends Party> extends A
         this.fromDate = fromDate;
     }
 
-    @Temporal(TemporalType.DATE)
-    @Column(name = "to_date")
     public Date getToDate() {
         return new Date(toDate.getTime());
     }

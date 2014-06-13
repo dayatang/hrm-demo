@@ -30,6 +30,18 @@ public abstract class Organization extends Party {
 		return OrgLineMgmt.findChildrenOfOrganization(this, date);
 	}
 
+    public List<Company> listChildCompanies() {
+         String jpql = "select c from OrgLineMgmt o join o.responsible c " +
+                 "where o.commissioner = :commissioner and TYPE(c) = Company";
+        return getRepository().createJpqlQuery(jpql).addParameter("commissioner", this).list();
+    }
+
+    public List<Department> listChildDepartments() {
+        String jpql = "select c from OrgLineMgmt o join o.responsible c " +
+                "where o.commissioner = :commissioner and TYPE(c) = Department";
+        return getRepository().createJpqlQuery(jpql).addParameter("commissioner", this).list();
+    }
+
 	public Set<Post> getPosts(Date date) {
 		return new HashSet<Post>(Post.findByOrganization(this, date));
 	}

@@ -27,9 +27,11 @@ public abstract class Party extends AbstractEntity {
     private String name;
 
     // 创建日期
+    @Temporal(TemporalType.DATE)
     private Date createDate = new Date();
 
     // 终结日期
+    @Temporal(TemporalType.DATE)
     private Date terminateDate = DateUtils.MAX_DATE;
 
     public Party() {
@@ -55,7 +57,6 @@ public abstract class Party extends AbstractEntity {
         this.name = name;
     }
 
-    @Temporal(TemporalType.DATE)
     public Date getCreateDate() {
         return createDate;
     }
@@ -64,7 +65,6 @@ public abstract class Party extends AbstractEntity {
         this.createDate = createDate;
     }
 
-    @Temporal(TemporalType.DATE)
     public Date getTerminateDate() {
         return terminateDate;
     }

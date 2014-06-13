@@ -27,10 +27,6 @@ public class Email implements ValueObject {
 		return address;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder(31, 17).append(address).toHashCode();

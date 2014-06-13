@@ -50,32 +50,16 @@ public abstract class Accountability<C extends Party, R extends Party> extends A
         return commissioner;
     }
 
-    void setCommissioner(C commissioner) {
-        this.commissioner = commissioner;
-    }
-
     public R getResponsible() {
         return responsible;
-    }
-
-    void setResponsible(R responsible) {
-        this.responsible = responsible;
     }
 
     public Date getFromDate() {
         return new Date(fromDate.getTime());
     }
 
-    void setFromDate(Date fromDate) {
-        this.fromDate = fromDate;
-    }
-
     public Date getToDate() {
         return new Date(toDate.getTime());
-    }
-
-    void setToDate(Date toDate) {
-        this.toDate = new Date(toDate.getTime());
     }
 
     @Override

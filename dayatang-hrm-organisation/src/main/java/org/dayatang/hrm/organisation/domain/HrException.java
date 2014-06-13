@@ -1,4 +1,4 @@
-package org.dayatang.hrm;
+package org.dayatang.hrm.organisation.domain;
 
 public class HrException extends RuntimeException {
 

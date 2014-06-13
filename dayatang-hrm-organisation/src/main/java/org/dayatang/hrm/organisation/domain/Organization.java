@@ -8,7 +8,6 @@ import java.util.Set;
 import javax.persistence.Entity;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.dayatang.hrm.organisation.TerminateNotEmptyOrganizationException;
 
 @Entity
 public abstract class Organization extends Party {

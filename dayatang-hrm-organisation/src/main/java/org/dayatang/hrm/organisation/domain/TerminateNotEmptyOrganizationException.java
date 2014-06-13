@@ -1,6 +1,4 @@
-package org.dayatang.hrm.organisation;
-
-import org.dayatang.hrm.HrException;
+package org.dayatang.hrm.organisation.domain;
 
 public class TerminateNotEmptyOrganizationException extends HrException {
 

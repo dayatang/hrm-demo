@@ -54,13 +54,12 @@
 			<name>Dayatang snapshot repository</name>
 			<url>dav:http://nexus.dayatang.org/content/repositories/snapshots</url>
 		</snapshotRepository>
-		<site>
-			<id>dayatang-site</id>
-			<name>Dayatang site</name>
-			<url>dav:http://www.dayatang.org/projects/dayatang-hrm-project</url>
-		</site>
-		<!-- <site> <id>github-project-site</id> <url>gitsite:git@github.com/dayatang/dayatang-security</url> 
-			</site> -->
+        <site>
+            <id>github</id>
+            <name>Deployment through GitHub's site deployment plugin</name>
+            <url>git:ssh://git@github.com/dayatang/hrm-demo.git?gh-pages#</url>
+            <!--<url>gitsite:git@github.com/dayatang/dddlib.git</url>-->
+        </site>
 	</distributionManagement>
 
 	<repositories>
@@ -542,16 +541,31 @@
 					<version>2.3.7</version>
 					<extensions>true</extensions>
 				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-site-plugin</artifactId>
-					<version>3.1</version>
-					<configuration>
-						<locales>zh_CN</locales>
-						<inputEncoding>${charset}</inputEncoding>
-						<outputEncoding>${charset}</outputEncoding>
-					</configuration>
-				</plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <version>3.4</version>
+                    <configuration>
+                        <locales>zh_CN</locales>
+                    </configuration>
+                    <dependencies>
+                        <dependency>
+                            <groupId>commons-logging</groupId>
+                            <artifactId>commons-logging</artifactId>
+                            <version>1.1.2</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>net.trajano.wagon</groupId>
+                            <artifactId>wagon-git</artifactId>
+                            <version>2.0.1</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>org.apache.maven.doxia</groupId>
+                            <artifactId>doxia-module-markdown</artifactId>
+                            <version>1.6</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-release-plugin</artifactId>
@@ -618,7 +632,7 @@
                 <version>2.3</version>
                 <configuration>
                     <inputEncoding>${charset}</inputEncoding>
-                    <outputEncoding>${charset}</outputEncoding>
+                     <outputEncoding>${charset}</outputEncoding>
                 </configuration>
             </plugin>
             <plugin>
@@ -633,40 +647,11 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-pmd-plugin</artifactId>
-                <version>3.0.1</version>
-                <configuration>
-                    <sourceEncoding>utf-8</sourceEncoding>
-                    <targetJdk>1.6</targetJdk>
-                    <rulesets>
-                        <ruleset>/rulesets/basic.xml</ruleset>
-                        <ruleset>/rulesets/imports.xml</ruleset>
-                        <ruleset>/rulesets/unusedcode.xml</ruleset>
-                        <ruleset>/rulesets/controversial.xml</ruleset>
-                    </rulesets>
-                    <format>xml</format>
-                    <linkXRef>true</linkXRef>
-                    <minimumTokens>100</minimumTokens>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
                 <version>2.10</version>
                 <configuration>
                     <configLocation>config/sun_checks.xml</configLocation>
                     <encoding>${charset}</encoding>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-changes-plugin</artifactId>
-                <version>2.6</version>
-                <configuration>
-                    <tracUser>${trac.username}</tracUser>
-                    <tracPassword>${trac.password}</tracPassword>
-                    <query>status!=closed&amp;order=type</query>
-                    <outputEncoding>${charset}</outputEncoding>
                 </configuration>
             </plugin>
             <plugin>
@@ -872,7 +857,7 @@
 
 	<properties>
 		<!-- Application settings -->
-		<dddlib.version>4.2.1-SNAPSHOT</dddlib.version>
+		<dddlib.version>4.4.0</dddlib.version>
 		<slf4j.version>1.7.2</slf4j.version>
         <hibernate.version>4.3.4.Final</hibernate.version>
         <spring.version>4.0.3.RELEASE</spring.version>

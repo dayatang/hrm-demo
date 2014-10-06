@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh_CN" lang="zh_CN">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<title>OrganisationApplicationImpl xref</title>
+<link type="text/css" rel="stylesheet" href="../../../../../../stylesheet.css" />
+</head>
+<body>
+<div id="overview"><a href="../../../../../../../apidocs/org/dayatang/hrm/organisation/application/impl/OrganisationApplicationImpl.html">View Javadoc</a></div><pre>
+
+<a class="jxr_linenumber" name="1" href="#1">1</a>   <strong class="jxr_keyword">package</strong> org.dayatang.hrm.organisation.application.impl;
+<a class="jxr_linenumber" name="2" href="#2">2</a>   
+<a class="jxr_linenumber" name="3" href="#3">3</a>   <strong class="jxr_keyword">import</strong> java.util.Date;
+<a class="jxr_linenumber" name="4" href="#4">4</a>   
+<a class="jxr_linenumber" name="5" href="#5">5</a>   <strong class="jxr_keyword">import</strong> org.dayatang.hrm.organisation.application.OrganisationApplication;
+<a class="jxr_linenumber" name="6" href="#6">6</a>   <strong class="jxr_keyword">import</strong> org.dayatang.hrm.organisation.domain.OrgLineMgmt;
+<a class="jxr_linenumber" name="7" href="#7">7</a>   <strong class="jxr_keyword">import</strong> org.dayatang.hrm.organisation.domain.Organization;
+<a class="jxr_linenumber" name="8" href="#8">8</a>   <strong class="jxr_keyword">import</strong> org.dayatang.hrm.organisation.domain.Party;
+<a class="jxr_linenumber" name="9" href="#9">9</a>   <strong class="jxr_keyword">import</strong> org.dayatang.hrm.organisation.domain.Post;
+<a class="jxr_linenumber" name="10" href="#10">10</a>  
+<a class="jxr_linenumber" name="11" href="#11">11</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../../../../org/dayatang/hrm/organisation/application/impl/OrganisationApplicationImpl.html">OrganisationApplicationImpl</a> <strong class="jxr_keyword">implements</strong> <a href="../../../../../../org/dayatang/hrm/organisation/application/OrganisationApplication.html">OrganisationApplication</a> {
+<a class="jxr_linenumber" name="12" href="#12">12</a>  
+<a class="jxr_linenumber" name="13" href="#13">13</a>  	@Override
+<a class="jxr_linenumber" name="14" href="#14">14</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> createOrganization(<a href="../../../../../../org/dayatang/hrm/organisation/domain/Organization.html">Organization</a> orgToCreate,
+<a class="jxr_linenumber" name="15" href="#15">15</a>  			Organization parent, Date date) {
+<a class="jxr_linenumber" name="16" href="#16">16</a>  		orgToCreate.setCreateDate(date);
+<a class="jxr_linenumber" name="17" href="#17">17</a>  		orgToCreate.save();
+<a class="jxr_linenumber" name="18" href="#18">18</a>  		<strong class="jxr_keyword">new</strong> <a href="../../../../../../org/dayatang/hrm/organisation/domain/OrgLineMgmt.html">OrgLineMgmt</a>(parent, orgToCreate, date).save();
+<a class="jxr_linenumber" name="19" href="#19">19</a>  	}
+<a class="jxr_linenumber" name="20" href="#20">20</a>  
+<a class="jxr_linenumber" name="21" href="#21">21</a>  	@Override
+<a class="jxr_linenumber" name="22" href="#22">22</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> terminateParty(<a href="../../../../../../org/dayatang/hrm/organisation/domain/Party.html">Party</a> party, Date date) {
+<a class="jxr_linenumber" name="23" href="#23">23</a>  		party.terminate(date);
+<a class="jxr_linenumber" name="24" href="#24">24</a>  
+<a class="jxr_linenumber" name="25" href="#25">25</a>  	}
+<a class="jxr_linenumber" name="26" href="#26">26</a>  
+<a class="jxr_linenumber" name="27" href="#27">27</a>  	@Override
+<a class="jxr_linenumber" name="28" href="#28">28</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> changeParentOfOrganization(<a href="../../../../../../org/dayatang/hrm/organisation/domain/Organization.html">Organization</a> organization,
+<a class="jxr_linenumber" name="29" href="#29">29</a>  			Organization newParent, Date date) {
+<a class="jxr_linenumber" name="30" href="#30">30</a>  		OrgLineMgmt.getByResponsible(organization, date).terminate(date);
+<a class="jxr_linenumber" name="31" href="#31">31</a>  		<strong class="jxr_keyword">new</strong> <a href="../../../../../../org/dayatang/hrm/organisation/domain/OrgLineMgmt.html">OrgLineMgmt</a>(newParent, organization, date).save();
+<a class="jxr_linenumber" name="32" href="#32">32</a>  	}
+<a class="jxr_linenumber" name="33" href="#33">33</a>  
+<a class="jxr_linenumber" name="34" href="#34">34</a>  	@Override
+<a class="jxr_linenumber" name="35" href="#35">35</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> createPostUnderOrganization(<a href="../../../../../../org/dayatang/hrm/organisation/domain/Post.html">Post</a> post,
+<a class="jxr_linenumber" name="36" href="#36">36</a>  			Organization organization, Date date) {
+<a class="jxr_linenumber" name="37" href="#37">37</a>  		post.setOrganization(organization);
+<a class="jxr_linenumber" name="38" href="#38">38</a>  		post.setCreateDate(date);
+<a class="jxr_linenumber" name="39" href="#39">39</a>  		post.save();
+<a class="jxr_linenumber" name="40" href="#40">40</a>  	}
+<a class="jxr_linenumber" name="41" href="#41">41</a>  
+<a class="jxr_linenumber" name="42" href="#42">42</a>  }
+</pre>
+<hr/><div id="footer">This page was automatically generated by <a href="http://maven.apache.org/">Maven</a></div></body>
+</html>
+

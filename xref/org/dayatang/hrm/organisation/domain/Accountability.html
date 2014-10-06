@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh_CN" lang="zh_CN">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<title>Accountability xref</title>
+<link type="text/css" rel="stylesheet" href="../../../../../stylesheet.css" />
+</head>
+<body>
+<div id="overview"><a href="../../../../../../apidocs/org/dayatang/hrm/organisation/domain/Accountability.html">View Javadoc</a></div><pre>
+
+<a class="jxr_linenumber" name="1" href="#1">1</a>   <strong class="jxr_keyword">package</strong> org.dayatang.hrm.organisation.domain;
+<a class="jxr_linenumber" name="2" href="#2">2</a>   
+<a class="jxr_linenumber" name="3" href="#3">3</a>   <strong class="jxr_keyword">import</strong> java.util.Date;
+<a class="jxr_linenumber" name="4" href="#4">4</a>   <strong class="jxr_keyword">import</strong> java.util.List;
+<a class="jxr_linenumber" name="5" href="#5">5</a>   
+<a class="jxr_linenumber" name="6" href="#6">6</a>   <strong class="jxr_keyword">import</strong> javax.persistence.*;
+<a class="jxr_linenumber" name="7" href="#7">7</a>   
+<a class="jxr_linenumber" name="8" href="#8">8</a>   <strong class="jxr_keyword">import</strong> org.dayatang.domain.AbstractEntity;
+<a class="jxr_linenumber" name="9" href="#9">9</a>   <strong class="jxr_keyword">import</strong> org.dayatang.utils.Assert;
+<a class="jxr_linenumber" name="10" href="#10">10</a>  <strong class="jxr_keyword">import</strong> org.dayatang.utils.DateUtils;
+<a class="jxr_linenumber" name="11" href="#11">11</a>  
+<a class="jxr_linenumber" name="12" href="#12">12</a>  @Entity
+<a class="jxr_linenumber" name="13" href="#13">13</a>  @Table(name = <span class="jxr_string">"accountabilities"</span>)
+<a class="jxr_linenumber" name="14" href="#14">14</a>  @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+<a class="jxr_linenumber" name="15" href="#15">15</a>  @DiscriminatorColumn(name = <span class="jxr_string">"CATEGORY"</span>, discriminatorType = DiscriminatorType.STRING)
+<a class="jxr_linenumber" name="16" href="#16">16</a>  @NamedNativeQueries({
+<a class="jxr_linenumber" name="17" href="#17">17</a>      @NamedNativeQuery(name = <span class="jxr_string">"Accountability.findAccountabilitiesByParty"</span>,
+<a class="jxr_linenumber" name="18" href="#18">18</a>              query = <span class="jxr_string">"select o from Accountability o where (o.commissioner = :party or o.responsible = :party) and o.fromDate &lt;= :date and o.toDate &gt; :date"</span>)})
+<a class="jxr_linenumber" name="19" href="#19">19</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">abstract</strong> <strong class="jxr_keyword">class</strong> Accountability&lt;C <strong class="jxr_keyword">extends</strong> Party, R <strong class="jxr_keyword">extends</strong> Party&gt; <strong class="jxr_keyword">extends</strong> AbstractEntity {
+<a class="jxr_linenumber" name="20" href="#20">20</a>  
+<a class="jxr_linenumber" name="21" href="#21">21</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">long</strong> serialVersionUID = 3456398163374995470L;
+<a class="jxr_linenumber" name="22" href="#22">22</a>  
+<a class="jxr_linenumber" name="23" href="#23">23</a>      @ManyToOne(targetEntity = Party.<strong class="jxr_keyword">class</strong>, cascade = CascadeType.ALL)
+<a class="jxr_linenumber" name="24" href="#24">24</a>      @JoinColumn(name = <span class="jxr_string">"commissioner_id"</span>)
+<a class="jxr_linenumber" name="25" href="#25">25</a>      <strong class="jxr_keyword">private</strong> C commissioner;
+<a class="jxr_linenumber" name="26" href="#26">26</a>  
+<a class="jxr_linenumber" name="27" href="#27">27</a>      @ManyToOne(targetEntity = Party.<strong class="jxr_keyword">class</strong>, cascade = CascadeType.ALL)
+<a class="jxr_linenumber" name="28" href="#28">28</a>      @JoinColumn(name = <span class="jxr_string">"responsible_id"</span>)
+<a class="jxr_linenumber" name="29" href="#29">29</a>      <strong class="jxr_keyword">private</strong> R responsible;
+<a class="jxr_linenumber" name="30" href="#30">30</a>  
+<a class="jxr_linenumber" name="31" href="#31">31</a>      @Temporal(TemporalType.DATE)
+<a class="jxr_linenumber" name="32" href="#32">32</a>      @Column(name = <span class="jxr_string">"from_date"</span>)
+<a class="jxr_linenumber" name="33" href="#33">33</a>      <strong class="jxr_keyword">private</strong> Date fromDate;
+<a class="jxr_linenumber" name="34" href="#34">34</a>  
+<a class="jxr_linenumber" name="35" href="#35">35</a>      @Temporal(TemporalType.DATE)
+<a class="jxr_linenumber" name="36" href="#36">36</a>      @Column(name = <span class="jxr_string">"to_date"</span>)
+<a class="jxr_linenumber" name="37" href="#37">37</a>      <strong class="jxr_keyword">private</strong> Date toDate;
+<a class="jxr_linenumber" name="38" href="#38">38</a>  
+<a class="jxr_linenumber" name="39" href="#39">39</a>      <strong class="jxr_keyword">protected</strong> <a href="../../../../../org/dayatang/hrm/organisation/domain/Accountability.html">Accountability</a>() {
+<a class="jxr_linenumber" name="40" href="#40">40</a>      }
+<a class="jxr_linenumber" name="41" href="#41">41</a>  
+<a class="jxr_linenumber" name="42" href="#42">42</a>      <strong class="jxr_keyword">public</strong> <a href="../../../../../org/dayatang/hrm/organisation/domain/Accountability.html">Accountability</a>(C commissioner, R responsible, Date fromDate) {
+<a class="jxr_linenumber" name="43" href="#43">43</a>          <strong class="jxr_keyword">this</strong>.commissioner = commissioner;
+<a class="jxr_linenumber" name="44" href="#44">44</a>          <strong class="jxr_keyword">this</strong>.responsible = responsible;
+<a class="jxr_linenumber" name="45" href="#45">45</a>          <strong class="jxr_keyword">this</strong>.fromDate = <strong class="jxr_keyword">new</strong> Date(fromDate.getTime());
+<a class="jxr_linenumber" name="46" href="#46">46</a>          <strong class="jxr_keyword">this</strong>.toDate = DateUtils.MAX_DATE;
+<a class="jxr_linenumber" name="47" href="#47">47</a>      }
+<a class="jxr_linenumber" name="48" href="#48">48</a>  
+<a class="jxr_linenumber" name="49" href="#49">49</a>      <strong class="jxr_keyword">public</strong> C getCommissioner() {
+<a class="jxr_linenumber" name="50" href="#50">50</a>          <strong class="jxr_keyword">return</strong> commissioner;
+<a class="jxr_linenumber" name="51" href="#51">51</a>      }
+<a class="jxr_linenumber" name="52" href="#52">52</a>  
+<a class="jxr_linenumber" name="53" href="#53">53</a>      <strong class="jxr_keyword">public</strong> R getResponsible() {
+<a class="jxr_linenumber" name="54" href="#54">54</a>          <strong class="jxr_keyword">return</strong> responsible;
+<a class="jxr_linenumber" name="55" href="#55">55</a>      }
+<a class="jxr_linenumber" name="56" href="#56">56</a>  
+<a class="jxr_linenumber" name="57" href="#57">57</a>      <strong class="jxr_keyword">public</strong> Date getFromDate() {
+<a class="jxr_linenumber" name="58" href="#58">58</a>          <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> Date(fromDate.getTime());
+<a class="jxr_linenumber" name="59" href="#59">59</a>      }
+<a class="jxr_linenumber" name="60" href="#60">60</a>  
+<a class="jxr_linenumber" name="61" href="#61">61</a>      <strong class="jxr_keyword">public</strong> Date getToDate() {
+<a class="jxr_linenumber" name="62" href="#62">62</a>          <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> Date(toDate.getTime());
+<a class="jxr_linenumber" name="63" href="#63">63</a>      }
+<a class="jxr_linenumber" name="64" href="#64">64</a>  
+<a class="jxr_linenumber" name="65" href="#65">65</a>      @Override
+<a class="jxr_linenumber" name="66" href="#66">66</a>      <strong class="jxr_keyword">public</strong> String[] businessKeys() {
+<a class="jxr_linenumber" name="67" href="#67">67</a>          <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> String[]{<span class="jxr_string">"commissioner"</span>, <span class="jxr_string">"responsible"</span>, <span class="jxr_string">"fromDate"</span>, <span class="jxr_string">"toDate"</span>};
+<a class="jxr_linenumber" name="68" href="#68">68</a>      }
+<a class="jxr_linenumber" name="69" href="#69">69</a>  
+<a class="jxr_linenumber" name="70" href="#70">70</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> terminate(Date date) {
+<a class="jxr_linenumber" name="71" href="#71">71</a>          Assert.notNull(date, <span class="jxr_string">"Terminate Date is null!"</span>);
+<a class="jxr_linenumber" name="72" href="#72">72</a>          <strong class="jxr_keyword">this</strong>.toDate = <strong class="jxr_keyword">new</strong> Date(date.getTime());
+<a class="jxr_linenumber" name="73" href="#73">73</a>          save();
+<a class="jxr_linenumber" name="74" href="#74">74</a>      }
+<a class="jxr_linenumber" name="75" href="#75">75</a>  
+<a class="jxr_linenumber" name="76" href="#76">76</a>      @SuppressWarnings(<span class="jxr_string">"rawtypes"</span>)
+<a class="jxr_linenumber" name="77" href="#77">77</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> &lt;T <strong class="jxr_keyword">extends</strong> Accountability&gt; List&lt;T&gt; findAccountabilities(Class&lt;T&gt; accountabilityClass, Date date) {
+<a class="jxr_linenumber" name="78" href="#78">78</a>          <strong class="jxr_keyword">return</strong> getRepository().createCriteriaQuery(accountabilityClass).le(<span class="jxr_string">"fromDate"</span>, date).gt(<span class="jxr_string">"toDate"</span>, date).list();
+<a class="jxr_linenumber" name="79" href="#79">79</a>      }
+<a class="jxr_linenumber" name="80" href="#80">80</a>  
+<a class="jxr_linenumber" name="81" href="#81">81</a>      @SuppressWarnings(<span class="jxr_string">"rawtypes"</span>)
+<a class="jxr_linenumber" name="82" href="#82">82</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> List&lt;Accountability&gt; findAccountabilitiesByParty(<a href="../../../../../org/dayatang/hrm/organisation/domain/Party.html">Party</a> party, Date date) {
+<a class="jxr_linenumber" name="83" href="#83">83</a>          <strong class="jxr_keyword">return</strong> getRepository().createNamedQuery(<span class="jxr_string">"Accountability.findAccountabilitiesByParty"</span>)
+<a class="jxr_linenumber" name="84" href="#84">84</a>                  .addParameter(<span class="jxr_string">"party"</span>, party).addParameter(<span class="jxr_string">"date"</span>, date).list();
+<a class="jxr_linenumber" name="85" href="#85">85</a>      }
+<a class="jxr_linenumber" name="86" href="#86">86</a>  
+<a class="jxr_linenumber" name="87" href="#87">87</a>  }
+</pre>
+<hr/><div id="footer">This page was automatically generated by <a href="http://maven.apache.org/">Maven</a></div></body>
+</html>
+
